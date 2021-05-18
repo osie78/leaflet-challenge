@@ -2,8 +2,8 @@
 // We set the longitude, latitude, and the starting zoom level for sf
 // This gets inserted into the div with an id of 'map' in index.html
 var myMap = L.map("map", {
-  center: [37.7749, -122.4194],
-  zoom: 5
+  center: [37.7392, -104.99],
+  zoom: 4.3
 });
 
 // // Adding a tile layer (the background map image) to our map
