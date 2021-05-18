@@ -20,4 +20,10 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // // Store our API endpoint
 var queryUrl = "https:earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
+d3.json(queryUrl).then(function(response) {
 
+  console.log(response);
+
+
+
+});
