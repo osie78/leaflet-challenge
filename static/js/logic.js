@@ -16,13 +16,26 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
-// Setting a d3.jason response function to start bringing data to the map. All other layers will be added inside this function
+// Setting a d3.json response function to start bringing data to the map. All other layers will be added inside this function
 var queryUrl = "https:earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 d3.json(queryUrl).then(function(response) {
 
   console.log(response);
+// The json response return objects with the following keys: bbox, features and metadata.
+// Inside features we can find geometry (where coordinates are stored) and properties, where the earthquake magnitude is found
 
+  function styleInfo(feature) {
+    return {
+      opacity: 1,
+      fillOpacity: 1,
+      fillColor: getColor(feature.properties.mag),
+      color: "#000000",
+      radius: getRadius(feature.properties.mag),
+      stroke: true,
+      weight: 0.5
+    };
+  }
 
 
 });
