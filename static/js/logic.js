@@ -25,33 +25,54 @@ d3.json(queryUrl).then(function(response) {
 // The json response return objects with the following keys: bbox, features and metadata.
 // Inside features we can find geometry (where coordinates are stored) and properties, where the earthquake magnitude is found
 
-  function styleInfo(feature) {
+  function CircleStyle(feature) {
     return {
       opacity: 1,
       fillOpacity: 1,
-      fillColor: getColor(feature.properties.mag),
-      color: "#000000",
-      radius: getRadius(feature.properties.mag),
+      fillColor: circleColor(feature.properties.mag),
+      color: "#0033cc",
+      //the radius is adjusted to have better resolution. If not multiplied by 2, the circles are too small
+      radius: (feature.properties.mag)*2,
       stroke: true,
-      weight: 0.5
+      weight: 1
     };
   }
 
-  // set different color from magnitude
-  function getColor(magnitude) {
+  // Colors for the earthquake magnitude. Applying switch insted of elseif
+  function circleColor(magnitude) {
     switch (true) {
     case magnitude > 5:
-      return "#ea2c2c";
+      return "#ff0000";
     case magnitude > 4:
-      return "#ea822c";
+      return "#ff0066";
     case magnitude > 3:
-      return "#ee9c00";
+      return "#ff66ff";
     case magnitude > 2:
-      return "#eecc00";
+      return "#99ccff";
     case magnitude > 1:
-      return "#d4ee00";
+      return "#66ffff";
     default:
-      return "#98ee00";
+      return "#ffffff";
     }}
+
+//  from https://geospatialresponse.wordpress.com/2015/07/26/leaflet-geojson-pointtolayer/
+    L.geoJson(response, {
+      // Maken cricles
+      pointToLayer: function(feature, latlng) {
+        return new L.circleMarker(latlng);
+      },
+      // circle style
+      style: CircleStyle,
+      //-------------------------------------------------------------
+      
+      // popup for each marker
+      onEachFeature: function(feature, layer) {
+        layer.bindPopup(feature.properties.title);
+        layer.on("mouseover", function(evt) { this.openPopup(); });
+		    layer.on("mouseout", function(evt) { this.closePopup(); });
+      }
+    }).addTo(myMap);
+
+
 
 });
