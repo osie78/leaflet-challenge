@@ -26,7 +26,7 @@ var satellite = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.pn
 var maptype={"Satellite View": satellite, "Map View":street};
 var original ={"Eartquake Magnitude": street};
 
-L.control.layers(maptype, original, {
+L.control.layers(maptype, null, {
   collapsed: false
 }).addTo(myMap);
 
@@ -87,6 +87,24 @@ d3.json(queryUrl).then(function(response) {
       }
     }).addTo(myMap);
 
+ 
+  
+    var legend=L.control({position:"bottomright"});
+    legend.onAdd=function() {
+      var div= L.DomUtil.create("div", "legend");
+      div.innerHTML= 
+      '<p> <b>Earthquake Magnitude:</b> </p> '+
+      '<i style="background: #ff0000"> </i> <p> >5:</p> '+
+      '<i style="background: #ff0066"> </i> <p> >4:</p>' +
+      '<i style="background: #ff0066"> </i> <p> >3:</p>' +
+      '<i style="background: #ff9966"> </i> <p> >2:</p>' +
+      '<i style="background: #99ff33"> </i> <p> >1:</p>' 
+      
 
+      return div;
+    }
+
+    
+    legend.addTo(myMap); 
 
 });
