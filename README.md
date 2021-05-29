@@ -11,4 +11,6 @@
 * Colors to represent each earthquake magnituded are defined in a switch-case-return function.
 * Markers location are obtained using the geojson response of "https://geospatialresponse.wordpress.com/2015/07/26/leaflet-geojson-pointtolayer/"
 * Popup for each marker is added with a mouse over function to make it interactive and "clickless"
-*Legend is added directly in the html file, creating a "div" tag to represent each earthquake magnitude. 
+* Legend is added directly in the html file, creating a "div" tag to represent each earthquake magnitude. 
+
+<b> NOTE </b>: Capture of the html file running in the local server can be found in in Images/Capture route of this repository.
