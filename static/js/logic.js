@@ -56,7 +56,7 @@ d3.json(queryUrl).then(function(response) {
   function circleColor(magnitude) {
     switch (true) {
     case magnitude > 5:
-      return "#ff0000";
+      return "#000000";
     case magnitude > 4:
       return "#ff0066";
     case magnitude > 3:
@@ -94,10 +94,10 @@ d3.json(queryUrl).then(function(response) {
       var div= L.DomUtil.create("div", "legend");
       div.innerHTML= 
       '<p> <b>Earthquake Magnitude:</b> </p> '+
-      '<i style="background: #ff0000"> </i> <p> >5:</p> '+
+      '<i style="background: #000000"> </i> <p> >5:</p> '+
       '<i style="background: #ff0066"> </i> <p> >4:</p>' +
-      '<i style="background: #ff0066"> </i> <p> >3:</p>' +
-      '<i style="background: #ff9966"> </i> <p> >2:</p>' +
+      '<i style="background: #ff9966"> </i> <p> >3:</p>' +
+      '<i style="background: #ffff66"> </i> <p> >2:</p>' +
       '<i style="background: #99ff33"> </i> <p> >1:</p>' 
       
 
